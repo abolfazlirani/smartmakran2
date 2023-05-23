@@ -15,7 +15,7 @@ class AppColor {
   static Color boxGreyColor =const Color(0xffEDEDED);
   static Color praimaryColor ="EB8307".toColor();
   static Color transparent =Colors.transparent;
-  static Color secendColor =Get.theme.accentColor;
+  // static Color secendColor =Get.theme.accentColor;
 }
 extension HexColor on String {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
