@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dio/adapter.dart';
 import 'package:flutter/foundation.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart' as gt;
 import 'package:smartmkran/app/common/app_config.dart';
 import 'dart:convert';
@@ -307,12 +306,6 @@ class ApiRequster{
    }*/
 
 
-  Future<String> _getTokenFromSharedPrefence() async{
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString("token");
-    return token??"";
-  }
 
 
 
