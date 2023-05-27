@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smartmkran/app/pages/home/logic.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
@@ -78,6 +81,7 @@ class SendLocalFormController extends GetxController implements RequestInterface
     // TODO: implement onError
     isloading(false);
 
+    ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(jsonDecode(bodyError)['message'][0])));
   }
 
   @override
@@ -89,6 +93,7 @@ class SendLocalFormController extends GetxController implements RequestInterface
   void onSucces(source, int reqCdoe) {
     // TODO: implement onSucces
     isloading(false);
+    ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text("ارسال اطلاعات با موفقیت انجام شد")));
 
   }
 }
