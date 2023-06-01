@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smartmkran/app/common/app_config.dart';
 import 'package:smartmkran/app/pages/home/view.dart';
+
+import 'app/pages/blutouth/HomePage.dart';
+import 'app/pages/blutouth/SelecionarDispositivo.dart';
+import 'app/pages/blutouth/provider/StatusConexaoProvider.dart';
 
 void main() async{
   await GetStorage.init();
@@ -18,16 +23,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Smart Makran',
-      locale: Locale("fa","IR"),
-      fallbackLocale: Locale("fa","IR"),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: "iransans"
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<StatusConexaoProvider>.value(
+            value: StatusConexaoProvider()),
+      ],
+      child: GetMaterialApp(
+        title: 'Smart Makran',
+        locale: Locale("fa","IR"),
+        fallbackLocale: Locale("fa","IR"),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: "iransans"
+        ),
+        home: HomePage()
       ),
-      home: HomePage(),
     );
   }
 }

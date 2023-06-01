@@ -41,10 +41,8 @@ class SendLocalFormControlle5 extends GetxController implements RequestInterface
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    apiRequster.request("https://api.smartmakran.ir/fatality", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: {
-      "data":body
-    });
+    apiRequster.request("https://api.smartmakran.ir/manualMonitoring/fatality", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    body: body);
   }
   @override
   void onError(String content, int reqCode, String bodyError) {

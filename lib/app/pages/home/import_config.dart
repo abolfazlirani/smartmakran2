@@ -60,7 +60,14 @@ class _ImportConfigState extends State<ImportConfig> {
                       Expanded(
                         child: MaterialButton(onPressed: (){
                          pasteIntextFild();
-                        },child: Icon(Icons.paste,color: Colors.white,),color: Colors.red,),
+                        },child: Icon(Icons.paste,color: Colors.white,),color: Colors.green,),
+                      ),
+                      SizedBox(width: 15,),
+
+                      Expanded(
+                        child: MaterialButton(onPressed: (){
+                         deleteConfiog();
+                        },child: Icon(Icons.delete,color: Colors.white,),color: Colors.red,),
                       ),
                     ],
                   ),
@@ -81,5 +88,9 @@ class _ImportConfigState extends State<ImportConfig> {
      }
 
     });
+  }
+
+  void deleteConfiog() {
+    homeController.deleteConfig();
   }
 }

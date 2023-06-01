@@ -70,11 +70,11 @@ class SendLocalFormController extends GetxController implements RequestInterface
     if(textEditingController8.text.isNotEmpty){
       body['nitrate'] = textEditingController8.text;
     }
-    print('SendLocalFormController.sendDataToServer = ${body}');
+    print('SendLocalFormController.sendDataToServer = ${jsonEncode({
+      "data":body,"d":2
+    })}');
     apiRequster.request("https://api.smartmakran.ir/sensor", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: {
-      "data":body
-    });
+    body: body);
   }
   @override
   void onError(String content, int reqCode, String bodyError) {

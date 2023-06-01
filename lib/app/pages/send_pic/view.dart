@@ -43,7 +43,7 @@ class _SendImagePageState extends State<SendImagePage> {
 
                           child: MaterialButton(onPressed: (){
 
-                            logic.uploadImage();
+                            logic.uploadImage("s");
                           },child: Text("ارسال به سمت سرور",style: TextStyle(color: Colors.white),),color: Colors.blue,),
                         ),
                         if(logic.isNull) MaterialButton(onPressed: (){

@@ -20,7 +20,7 @@ class _SendImagePage2State extends State<SendImagePage2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ارسال تصویر ماژول حسگری"),
+        title: Text("ارسال  ثبت کیفیت آب به کمک تصویر"),
       ),
       body: SafeArea(
         child: Container(
@@ -45,7 +45,7 @@ class _SendImagePage2State extends State<SendImagePage2> {
 
                                 child: MaterialButton(onPressed: (){
 
-                                  logic.uploadImage();
+                                  logic.uploadImage("w");
                                 },child: Text("ارسال به سمت سرور",style: TextStyle(color: Colors.white),),color: Colors.blue,),
                               ),
                               if(logic.isNull) MaterialButton(onPressed: (){

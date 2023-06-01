@@ -25,7 +25,7 @@ class SendLocalFormPage5 extends StatelessWidget {
         builder: (logic) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('ارسال  فرم تلفات ' ),
+              title: Text('ارسال  ثبت تلفات ' ),
             ),
             body: SafeArea(
               child: Stack(

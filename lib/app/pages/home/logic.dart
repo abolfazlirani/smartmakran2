@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart' as gt;
 import 'package:get_storage/get_storage.dart';
 import 'package:smartmkran/app/common/RequestInterface.dart';
+import 'package:smartmkran/app/common/app_config.dart';
 
 import '../../../gen/json/base/pol_model.dart';
 
@@ -37,29 +38,41 @@ class HomeController extends  GetxController implements RequestInterface{
   }
 
   void setConfig(String text) {
-    print('HomeController.setConfig = ${text}');
-    final box = GetStorage();
-    List pound = jsonDecode(text)['ponds'];
-    box.write("mainConfig", text);
-    pound.forEach((element) {
-      pols.add(PolModel(element['name'], element['id']));
-    });
-     sensorKey =  jsonDecode(text)['sensorKey'];
-     update();
-    print('HomeController.setConfig = ${pols.length} - ${sensorKey}');
-  }
-
-  void _loadPolFromStorage() {
-    final box = GetStorage();
-    if (box.read("mainConfig")!=null) {
-      String text = box.read("mainConfig")!;
-    List pound = jsonDecode(text)['ponds'];
+    try {
+      print('HomeController.setConfig = ${text}');
+      final box = GetStorage();
+      box.write("mainConfig", text);
+      List pound = jsonDecode(text)['ponds'];
       pound.forEach((element) {
         pols.add(PolModel(element['name'], element['id']));
       });
-      sensorKey =  jsonDecode(text)['sensorKey'];
-      update();
+       sensorKey =  jsonDecode(text)['sensorKey'];
+       update();
+      Constant.showMessege2("کانفیگ اصلی ایمپورت شد");
+
       print('HomeController.setConfig = ${pols.length} - ${sensorKey}');
+    }  catch (e) {
+      // TODO
+      Constant.showMessege2("مشکلی در ایمپورت پیش آمده است");
+
+    }
+  }
+
+  void _loadPolFromStorage() {
+    try {
+      final box = GetStorage();
+      if (box.read("mainConfig")!=null) {
+        String text = box.read("mainConfig")!;
+      List pound = jsonDecode(text)['ponds'];
+        pound.forEach((element) {
+          pols.add(PolModel(element['name'], element['id']));
+        });
+        sensorKey =  jsonDecode(text)['sensorKey'];
+        update();
+        print('HomeController.setConfig = ${pols.length} - ${sensorKey}');
+      }
+    } catch (e) {
+      // TODO
     }
   }
   void getMainFunction() async {
@@ -90,6 +103,14 @@ class HomeController extends  GetxController implements RequestInterface{
       //print('_HomePageState.getMainFunction catch ( ${e}');
       // TODO
     }
+  }
+
+  void deleteConfig() {
+    setConfig("");
+    pols.clear();
+    sensorKey="";
+    update();
+    Constant.showMessege2("کانفیگ اصلی پاک شد");
   }
   
 }

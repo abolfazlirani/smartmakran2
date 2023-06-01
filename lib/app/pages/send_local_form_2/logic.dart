@@ -41,7 +41,7 @@ class SendLocalFormController2 extends GetxController implements RequestInterfac
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    apiRequster.request("https://api.smartmakran.ir/transparency", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    apiRequster.request("https://api.smartmakran.ir/manualMonitoring/transparency", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
     body: {
       "data":body
     });

@@ -49,10 +49,9 @@ class SendPicLogic extends GetxController{
         "type":"s",
         "pondId":"${polModel.id}",
         "sensorKey":"${homeController.sensorKey}",
-        "sensorKey":"${DateTime.now().toString()}",
+        "createdAt":"${DateTime.now().toString()}",
       });
 
-      print('SendPicLogic.uploadImage = 1 = ${files.elementAt(0).path}');
       DIO.Response response = await dio.post(url, data: formData,
           onSendProgress: (int count, int total){
          progress  = ((count*100)/total).obs;

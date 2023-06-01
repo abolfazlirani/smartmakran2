@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:smartmkran/app/pages/send_local_form/logic.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
 
@@ -131,23 +132,21 @@ class SendLocalFormPage extends StatelessWidget {
                                     labelText: 'نیترات',
                                   )),
                             ),
-
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: EdgeInsets.all(16),
+                              child: MaterialButton(onPressed: (){
+                                logic.sendDataToServer();
+                              },child: Text("ارسال اطلاعات به سمت سرور",style: TextStyle(color: Colors.white),),color: Colors.blue,),
+                            ),
+                            SizedBox(height: 10.h,)
 
                           ],
                         ),
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.all(16),
-                      child: MaterialButton(onPressed: (){
-                       logic.sendDataToServer();
-                      },child: Text("ارسال اطلاعات به سمت سرور",style: TextStyle(color: Colors.white),),color: Colors.blue,),
-                    ),
-                  ),
+
                   Obx(() => logic.isloading.value? Container(
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.5),

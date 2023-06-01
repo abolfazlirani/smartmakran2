@@ -25,7 +25,7 @@ class SendLocalFormPage3 extends StatelessWidget {
         builder: (logic) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('ارسال  فرم غذادهی ' ),
+              title: Text('ارسال  ثبت غذادهی ' ),
             ),
             body: SafeArea(
               child: Stack(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as DIO;
 import 'package:image_picker/image_picker.dart';
+import 'package:smartmkran/app/common/app_config.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
 
 import '../home/logic.dart';
@@ -24,6 +25,7 @@ class SendPicLogic extends GetxController{
       source: ImageSource.camera,
       maxWidth: 1800,
       maxHeight: 1800,
+      imageQuality: 30
     );
     if (pickedFile != null) {
        file1 = File(pickedFile.path);
@@ -35,7 +37,7 @@ class SendPicLogic extends GetxController{
     update();
   }
 
-  Future<void> uploadImage() async {
+  Future<void> uploadImage(type) async {
     HomeController homeController = Get.find<HomeController>();
 
     isLoading = true;
@@ -46,10 +48,10 @@ class SendPicLogic extends GetxController{
       DIO.Dio dio =  DIO.Dio();
       DIO. FormData formData =  DIO.FormData.fromMap({
         'file': await  DIO.MultipartFile.fromFile(files.elementAt(0).path),
-        "type":"s",
+        "type":type,
         "pondId":"${polModel.id}",
         "sensorKey":"${homeController.sensorKey}",
-        "sensorKey":"${DateTime.now().toString()}",
+        "createdAt":"${DateTime.now().toString()}",
       });
 
       print('SendPicLogic.uploadImage = 1 = ${files.elementAt(0).path}');
@@ -64,6 +66,7 @@ class SendPicLogic extends GetxController{
 
       update();
       print('Upload successful! Response: ${response.data}');
+      Constant.showMessege2("تصویر با موفقیت سمت سرور ارسال شد");
     }on DIO.DioError catch  (error) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(error.response.toString())));
       print('Error uploading image: ${error.response}');
