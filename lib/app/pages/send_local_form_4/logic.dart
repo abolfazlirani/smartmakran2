@@ -30,19 +30,21 @@ class SendLocalFormControlle4 extends GetxController implements RequestInterface
   SendLocalFormControlle4(this.polModel);
 
   sendDataToServer()async{
-    isloading(true);
+   // isloading(true);
     HomeController homeController = Get.find<HomeController>();
     var body = {
       "createdAt":DateTime.now().toString(),
       "pond":polModel.id,
-      "amount":textEditingController1.text,
+      "amount":int.parse(textEditingController1.text),
       "sensorsKey":homeController.sensorKey,
     };
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    apiRequster.request("https://api.smartmakran.ir/manualMonitoring/changingWater", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: body);
+    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "  ثبت تعویض آب", url: "https://api.smartmakran.ir/manualMonitoring/changingWater", body: jsonEncode(body), createdAt: "", savedAt: "", sended: false, pound: polModel.id));
+
+    // apiRequster.request("https://api.smartmakran.ir/manualMonitoring/changingWater", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    // body: body);
   }
   @override
   void onError(String content, int reqCode, String bodyError) {

@@ -20,7 +20,10 @@ class OffStorageDialog extends StatelessWidget {
           onPressed: () {
             // TODO: Handle action 1
             // Add your logic here to navigate to the internal memory page
+            Get.back();
+
             Get.to(OffileStoragePage(),arguments:[offlineSendedModel.pound] );
+
           },
         ),
         TextButton(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smartmkran/app/common/offline_storage.dart';
 
@@ -57,11 +58,13 @@ class SingleOfflineSendLogic extends GetxController{
   var isloading = false.obs;
   Future<void> sendPostRequest(OfflineSendedModel model,OfflineSendLogic logic) async {
     try {
+      isloading(true);
       final String requestUrl = model.url;
       final dynamic requestBody = jsonDecode(model.body);
       print('SingleOfflineSendLogic.sendPostRequest = ${requestUrl} - ${requestBody}');
 
       final response = await _dio.post(requestUrl, data: requestBody);
+      isloading(false);
 
       if (response.statusCode == 200) {
         // Successful response
@@ -71,12 +74,31 @@ class SingleOfflineSendLogic extends GetxController{
         logic.storage.changeStatusModel(model.id, true);
         logic.getAllList();
       } else {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(response.data['message'][0])));
+
         // Handle error response
         print('Error sending POST request: ${response.statusCode}');
       }
     }on DioError catch (e) {
       // Handle exceptions
+      isloading(false);
+
       print('Exception occurred during POST request: ${e.response}');
+      try {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(jsonDecode((e.response!).data)['message'][0])));
+      }  catch (e) {
+        // TODO
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text("ارسال اطلاعات با خطا مواجه شد")));
+
+      }
+      try {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(((e.response!).data)['message'][0])));
+      }  catch (e) {
+        // TODO
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text("ارسال اطلاعات با خطا مواجه شد")));
+
+      }
+
     }
   }
 }

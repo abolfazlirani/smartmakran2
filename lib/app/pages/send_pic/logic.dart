@@ -61,7 +61,8 @@ class SendPicLogic extends GetxController{
       DIO. FormData formData =  DIO.FormData.fromMap(body);
 
      // log('SendPicLogic.uploadImage = 1 = ${body}');
-      OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "ارسال تصویر ", url: url, body: jsonEncode({
+      OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(
+          id: 1, title:  (type.toString().contains("w")?"ثبت کیفیت آب به کمک تصویر":"ثبت زیست ستجی"), url: url, body: jsonEncode({
         'file': files.elementAt(0).readAsBytesSync()
         ,
         "type":type,
@@ -81,7 +82,7 @@ class SendPicLogic extends GetxController{
       //
       // update();
       // print('Upload successful! Response: ${response.data}');
-      Constant.showMessege2("تصویر با موفقیت سمت سرور ارسال شد");
+      //Constant.showMessege2("تصویر با موفقیت سمت سرور ارسال شد");
 
 
     }on DIO.DioError catch  (error) {

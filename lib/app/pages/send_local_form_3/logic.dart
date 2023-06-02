@@ -30,7 +30,7 @@ class SendLocalFormControlle3 extends GetxController implements RequestInterface
   SendLocalFormControlle3(this.polModel);
 
   sendDataToServer()async{
-    isloading(true);
+  //  isloading(true);
     HomeController homeController = Get.find<HomeController>();
     var body = {
       "createdAt":DateTime.now().toString(),
@@ -42,8 +42,10 @@ class SendLocalFormControlle3 extends GetxController implements RequestInterface
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    apiRequster.request("https://api.smartmakran.ir/manualMonitoring/feedingCheck", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: body);
+    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "  ثبت غذادهی", url: "https://api.smartmakran.ir/manualMonitoring/feedingCheck", body: jsonEncode(body), createdAt: "", savedAt: "", sended: false, pound: polModel.id));
+
+    // apiRequster.request("https://api.smartmakran.ir/manualMonitoring/feedingCheck", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    // body: body);
   }
   @override
   void onError(String content, int reqCode, String bodyError) {

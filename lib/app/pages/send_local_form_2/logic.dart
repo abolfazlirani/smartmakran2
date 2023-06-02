@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:smartmkran/app/pages/home/logic.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
 
+import '../../../gen/model/off.dart';
 import '../../common/RequestInterface.dart';
 import '../../common/app_api.dart';
+import '../../common/offline_storage.dart';
 
 class SendLocalFormController2 extends GetxController implements RequestInterface{
 
@@ -30,21 +32,23 @@ class SendLocalFormController2 extends GetxController implements RequestInterfac
   SendLocalFormController2(this.polModel);
 
   sendDataToServer()async{
-    isloading(true);
+    //isloading(true);
     HomeController homeController = Get.find<HomeController>();
     var body = {
       "createdAt":DateTime.now().toString(),
       "pond":polModel.id,
-      "amount":textEditingController1.text,
+      "amount":int.parse(textEditingController1.text),
       "sensorsKey":homeController.sensorKey,
     };
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    apiRequster.request("https://api.smartmakran.ir/manualMonitoring/transparency", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: {
-      "data":body
-    });
+    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: " ثبت شفافیت", url: "https://api.smartmakran.ir/manualMonitoring/transparency", body: jsonEncode(body), createdAt: "", savedAt: "", sended: false, pound: polModel.id));
+
+    //  apiRequster.request("https://api.smartmakran.ir/manualMonitoring/transparency", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    // body: {
+    //   "data":body
+    // });
   }
   @override
   void onError(String content, int reqCode, String bodyError) {
