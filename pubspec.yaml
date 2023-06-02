@@ -57,6 +57,7 @@ dependencies:
   scoped_model: ^2.0.0-nullsafety.0
   flutter_speech: ^2.0.0
   provider: ^6.0.1
+  persian_datetime_picker: ^2.6.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 

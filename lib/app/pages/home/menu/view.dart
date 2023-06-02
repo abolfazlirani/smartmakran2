@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smartmkran/app/pages/blutouth/HomePage.dart';
 import 'package:smartmkran/app/pages/send_local_form/view.dart';
 import 'package:smartmkran/app/pages/send_local_form_2/view.dart';
@@ -11,6 +12,7 @@ import 'package:smartmkran/app/pages/send_pic/view.dart';
 
 import '../../../../gen/json/base/pol_model.dart';
 import '../../../common/app_config.dart';
+import '../../offilne/view.dart';
 import '../../send_pic_2/view.dart';
 
 class MenuPage extends StatelessWidget {
@@ -30,6 +32,26 @@ class MenuPage extends StatelessWidget {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue),
+                  borderRadius: BorderRadius.circular(5)
+                ),
+                child: MaterialButton(
+                  onPressed: (){
+                    Get.to(OffileStoragePage(),arguments:[polModel.id] );
+
+                  },
+                  padding: EdgeInsets.zero,
+                  child: Center(
+                    child: Text("مدیریت رکوست های این استخر",style: TextStyle(color: Colors.blue),),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10,),
+
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,

@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:smartmkran/app/pages/home/logic.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
 
+import '../../../gen/model/off.dart';
 import '../../common/RequestInterface.dart';
 import '../../common/app_api.dart';
+import '../../common/offline_storage.dart';
 
 class SendLocalFormController extends GetxController implements RequestInterface{
 
@@ -35,46 +37,54 @@ class SendLocalFormController extends GetxController implements RequestInterface
   SendLocalFormController(this.polModel);
 
   sendDataToServer()async{
-    isloading(true);
+    //isloading(true);
     HomeController homeController = Get.find<HomeController>();
-    var body = {
+    Map<String,dynamic> body = {
       "createdAt":DateTime.now().toString(),
       "pond":polModel.id,
       "sensorsKey":homeController.sensorKey,
     };
 
     if(textEditingController1.text.isNotEmpty){
-      body['ph'] = textEditingController1.text;
+
+      body['ph'] = double.parse(textEditingController1.text);
     }
     if(textEditingController2.text.isNotEmpty){
-      body['oxygen'] = textEditingController2.text;
+      body['oxygen'] = int.parse(textEditingController2.text);
+
     }
     if(textEditingController3.text.isNotEmpty){
-      body['temperature'] = textEditingController3.text;
+      body['temperature'] = int.parse(textEditingController3.text);
+
     }
-    if(textEditingController3.text.isNotEmpty){
-      body['temperature'] = textEditingController3.text;
-    }
+
     if(textEditingController4.text.isNotEmpty){
-      body['orp'] = textEditingController4.text;
+      body['orp'] = int.parse(textEditingController4.text);
+
     }
     if(textEditingController5.text.isNotEmpty){
-      body['ec'] = textEditingController5.text;
+      body['ec'] = int.parse(textEditingController5.text);
+
     }
     if(textEditingController6.text.isNotEmpty){
-      body['ammonia'] = textEditingController6.text;
+      body['ammonia'] = int.parse(textEditingController6.text);
+
     }
     if(textEditingController7.text.isNotEmpty){
-      body['nitrite'] = textEditingController7.text;
+      body['nitrite'] = int.parse(textEditingController7.text);
+
     }
     if(textEditingController8.text.isNotEmpty){
-      body['nitrate'] = textEditingController8.text;
+      body['nitrate'] = double.parse(textEditingController8.text);
+
     }
     print('SendLocalFormController.sendDataToServer = ${jsonEncode({
       "data":body,"d":2
     })}');
-    apiRequster.request("https://api.smartmakran.ir/sensor", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
-    body: body);
+    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "ارسال فرم یک ", url: "https://api.smartmakran.ir/sensor", body: jsonEncode(body),
+        createdAt: "", savedAt: "", sended: false, pound: polModel.id));
+    // apiRequster.request("https://api.smartmakran.ir/sensor", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
+    // body: body);
   }
   @override
   void onError(String content, int reqCode, String bodyError) {

@@ -6,6 +6,7 @@ class OfflineSendedModel {
   String createdAt;
   String savedAt;
   bool sended;
+  String pound;
 
   OfflineSendedModel({
     required this.id,
@@ -15,6 +16,7 @@ class OfflineSendedModel {
     required this.createdAt,
     required this.savedAt,
     required this.sended,
+    required this.pound,
   });
 
   factory OfflineSendedModel.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class OfflineSendedModel {
       createdAt: json['createdAt'],
       savedAt: json['savedAt'],
       sended: json['sended'],
+      pound: json['pound'],
     );
   }
 
@@ -38,6 +41,8 @@ class OfflineSendedModel {
       'createdAt': createdAt,
       'savedAt': savedAt,
       'sended': sended,
+      'pound': pound,
     };
   }
 }
+

@@ -11,6 +11,7 @@ import 'package:smartmkran/app/common/RequestInterface.dart';
 import 'package:smartmkran/app/common/app_config.dart';
 
 import '../../../gen/json/base/pol_model.dart';
+import '../offilne/logic.dart';
 
 class HomeController extends  GetxController implements RequestInterface{
   List<PolModel> pols = [];
