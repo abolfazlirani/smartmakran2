@@ -66,7 +66,7 @@ class SingleOfflineSendLogic extends GetxController{
       final response = await _dio.post(requestUrl, data: requestBody);
       isloading(false);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200||response.statusCode == 201) {
         // Successful response
         print('POST request sent successfully');
         // Update the status of the model as "sended" if needed
@@ -74,10 +74,10 @@ class SingleOfflineSendLogic extends GetxController{
         logic.storage.changeStatusModel(model.id, true);
         logic.getAllList();
       } else {
+        print('Error sending POST request: ${response.statusCode} - ${response.data}');
         ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content: Text(response.data['message'][0])));
 
         // Handle error response
-        print('Error sending POST request: ${response.statusCode}');
       }
     }on DioError catch (e) {
       // Handle exceptions

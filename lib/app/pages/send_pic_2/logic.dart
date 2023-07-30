@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
@@ -8,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:smartmkran/gen/json/base/pol_model.dart';
 
 import '../home/logic.dart';
+import 'dart:io' as io;
 
 class SendPicLogic extends GetxController{
   bool isNull = true;
@@ -28,8 +30,10 @@ class SendPicLogic extends GetxController{
     if (pickedFile != null) {
        file1 = File(pickedFile.path);
        files.add(file1);
-       isNull=false;
+
+      isNull=false;
     }
+
     print('SendPicLogic.getFromCamera = ${pickedFile} - ${file1}');
 
     update();

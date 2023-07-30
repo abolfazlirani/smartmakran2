@@ -58,18 +58,18 @@ class MenuPage extends StatelessWidget {
                 child: MaterialButton(onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (builder)=>SendLocalFormPage(polModel)));
 
-                },child: Text("کیفیت آب به صورت دستی",style: TextStyle(color: Colors.white),),color: Colors.blue,),
+                },child: Text("ثبت کیفیت آب به صورت دستی",style: TextStyle(color: Colors.white),),color: Colors.blue,),
               ),
-              SizedBox(height: 10,),
               Container(
+                margin: EdgeInsets.only(top: 10),
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 child: MaterialButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (builder)=>SendImagePage(polModel)));
+                  Navigator.push(context, MaterialPageRoute(builder: (builder)=>HomePages()));
 
-                },child: Text("ثبت زیست ستجی",style: TextStyle(color: Colors.white),),color: Colors.blue,),
+                },child: Text("ثبت کیفیت آب به کمک بلوتوث",style: TextStyle(color: Colors.white),),color: Colors.blue,),
               ),
-               SizedBox(height: 10,),
+              SizedBox(height: 10,),
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
@@ -78,6 +78,17 @@ class MenuPage extends StatelessWidget {
 
                 },child: Text("ثبت کیفیت آب به کمک تصویر",style: TextStyle(color: Colors.white),),color: Colors.blue,),
               ),
+              SizedBox(height: 10,),
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                child: MaterialButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (builder)=>SendImagePage(polModel)));
+
+                },child: Text("ثبت زیست ستجی",style: TextStyle(color: Colors.white),),color: Colors.blue,),
+              ),
+
               Container(
                 margin: EdgeInsets.only(top: 10),
                 width: MediaQuery.of(context).size.width,
@@ -123,15 +134,7 @@ class MenuPage extends StatelessWidget {
 
                 },child: Text("ثبت تلفات",style: TextStyle(color: Colors.white),),color: Colors.blue,),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                child: MaterialButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (builder)=>HomePages()));
 
-                },child: Text("کیفیت آب به کمک بلوتوث",style: TextStyle(color: Colors.white),),color: Colors.blue,),
-              ),
             ],
           ),
         ),

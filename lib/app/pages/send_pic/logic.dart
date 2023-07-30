@@ -14,6 +14,7 @@ import 'package:smartmkran/gen/json/base/pol_model.dart';
 import 'package:smartmkran/gen/model/off.dart';
 
 import '../home/logic.dart';
+import 'dart:io' as io;
 
 class SendPicLogic extends GetxController{
   bool isNull = true;
@@ -35,6 +36,11 @@ class SendPicLogic extends GetxController{
     if (pickedFile != null) {
        file1 = File(pickedFile.path);
        files.add(file1);
+       final bytes = io.File(file1.path).readAsBytesSync();
+
+       String img64 = 'data:image/jpg;base64,' + base64Encode(bytes);
+
+       print('SendPicLogic.getFromCamera = ${img64}');
        isNull=false;
     }
     print('SendPicLogic.getFromCamera = ${pickedFile} - ${file1}');
@@ -63,8 +69,7 @@ class SendPicLogic extends GetxController{
      // log('SendPicLogic.uploadImage = 1 = ${body}');
       OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(
           id: 1, title:  (type.toString().contains("w")?"ثبت کیفیت آب به کمک تصویر":"ثبت زیست ستجی"), url: url, body: jsonEncode({
-        'file': files.elementAt(0).readAsBytesSync()
-        ,
+        'file': 'data:image/jpg;base64,' + base64Encode(files.elementAt(0).readAsBytesSync()),
         "type":type,
         "pondId":"${polModel.id}",
         "sensorKey":"${homeController.sensorKey}",

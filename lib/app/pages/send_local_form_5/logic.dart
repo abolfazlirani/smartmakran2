@@ -35,7 +35,8 @@ class SendLocalFormControlle5 extends GetxController implements RequestInterface
     var body = {
       "createdAt":DateTime.now().toString(),
       "pond":polModel.id,
-      "amount":textEditingController1.text,
+      "amount":int.parse(textEditingController1.text),
+
       "sensorsKey":homeController.sensorKey,
     };
 

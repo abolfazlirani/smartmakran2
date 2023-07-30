@@ -41,7 +41,7 @@ class SendLocalFormControlle6 extends GetxController implements RequestInterface
 
 
     print('SendLocalFormController.sendDataToServer = ${body}');
-    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "  ثبت چگ غذا", url: "https://api.smartmakran.ir/feedingCheck", body: jsonEncode(body), createdAt: "", savedAt: "", sended: false, pound: polModel.id));
+    OfflineStorage(polModel.id).saveOneModel(OfflineSendedModel(id: 1, title: "  ثبت چگ غذا", url: "https://api.smartmakran.ir/manualMonitoring/feedingCheck", body: jsonEncode(body), createdAt: "", savedAt: "", sended: false, pound: polModel.id));
 
     //  apiRequster.request("https://api.smartmakran.ir/manualMonitoring/feedingCheck", ApiRequster.MHETOD_POST, 1,daynamicUrl: true,
    // body: body);

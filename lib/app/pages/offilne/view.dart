@@ -38,7 +38,7 @@ class _OffileStoragePageState extends State<OffileStoragePage> {
                 child: Column(
                   children: [
                     Expanded(child: ListView(
-                      children: logic.mainList
+                      children: logic.mainList.reversed.toList()
                           .asMap()
                           .entries
                           .map((e) {

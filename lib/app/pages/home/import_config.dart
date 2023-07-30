@@ -27,7 +27,7 @@ class _ImportConfigState extends State<ImportConfig> {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              Text("لطفا کانغیگ را وارد فیلد زیر کنید."),
+              Text("لطفا کانفیگ را وارد فیلد زیر کنید."),
               SizedBox(height: 10,),
               Container(
                 height: 150,
